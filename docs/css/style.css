@@ -34,13 +34,13 @@ section {
 }
 
 #aranu {
-    background-image: url(../source/img/aranu.PNG);
+    background-image: url(https://takahashi-pao.github.io/oretachi-omaetachi/img/aranu.PNG);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 }
 
 #walking-panchan {
-    background-image: url(../source/img/walking-panchan.GIF);
+    background-image: url(https://takahashi-pao.github.io/oretachi-omaetachi/img/walking-panchan.GIF);
     animation: walking 8s linear;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
