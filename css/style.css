@@ -1,0 +1,131 @@
+body {
+    margin: 0;
+    width: 100%;
+}
+
+main {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+}
+
+section {
+    position: relative;
+    display: block;
+}
+
+.top_main {
+    background: #F2EDE4;
+    overflow: hidden;
+}
+.top_main > .inner_main {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* character-contents */
+.characterContent {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: absolute;
+}
+
+#aranu {
+    background-image: url(../source/img/aranu.PNG);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+#walking-panchan {
+    background-image: url(../source/img/walking-panchan.GIF);
+    animation: walking 8s linear;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+@keyframes walking {
+    0% {
+        transform: translateX(100vw);
+        display: none;
+    }
+
+    3% {
+        display: block;
+    }
+
+    95% {
+        display: none;
+    }
+    100% {
+        transform: translateX(-30vw);
+    }
+}
+
+/* #walking-panchan-reverse {
+    background-image: url(../source/img/walking-panchan.GIF);
+    transform: rotateY(180deg);
+    animation: walking-reverse 8s linear;
+}
+
+@keyframes walking-reverse {
+    0% {
+        transform: translateX(-30vw);
+    }
+
+    100% {
+        transform: translateX(100vw);
+    }
+} */
+
+.top_oretachi {
+    background: #D9D1C7;
+}
+.top_oretachi > .inner_oretachi {
+    margin: 0 auto;
+    width: 100vw;
+    height: 100vh;
+}
+
+.top_author {
+    background: #735949;
+}
+.top_author > .inner_author {
+    margin: 0 auto;
+    width: 100vw;
+    height: 100vh;
+}
+
+footer {
+    background: #A6948A;
+    width: 100%;
+    height: 5vh;
+    position: relative;
+}
+/* 
+body {
+    width: 100%;
+    height: 1000px;
+  }
+  
+  header {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background-color: green;
+  }
+  
+  #box {
+    padding-top: 50px;
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: yellow;
+  } */
