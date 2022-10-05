@@ -1,8 +1,10 @@
-var _topAnimation;
+var _top_panchanAnimation;
+var _top_aranuAnimation;
 var item1;
 var item2;
 var item3;
-var itemInterval;
+var panchanInterval;
+var aranuInterval;
 const target = document.getElementById('main');
 
 /**
@@ -19,9 +21,12 @@ const createItem = (parentClassName, itemId, widthVal, heightVal, xPosition, yPo
     itemEl.className = `${parentClassName}`;
     itemEl.id = `${itemId}`;
     itemEl.style.width = `${widthVal}%`;
-    itemEl.style.height = `${heightVal}%`;
+    itemEl.style.height = itemEl.style.width;
     itemEl.style.left = xPosition + '%';
     itemEl.style.top = yPosition + '%';
+    if(parentClassName === "aranu"){
+        itemEl.style.animationDuration = rand(3, 13) + "s";
+    }
     target.appendChild(itemEl);
     setTimeout(() => {
         itemEl.style.display = '';
@@ -31,7 +36,7 @@ const createItem = (parentClassName, itemId, widthVal, heightVal, xPosition, yPo
     }, vanishTime);
 }
 
-var decideItem = (item1, item2, item3) => {
+var panchanItem = (item) => {
     var parentClassName = "characterContent";
     var itemId;
     var widthVal;
@@ -39,25 +44,16 @@ var decideItem = (item1, item2, item3) => {
     var xPosition;
     var yPosition;
     var vanishTime;
-    var divination = rand(60, 60);
-    var paramDivination;
+    var divination = rand(0, 100);
 
     // 表示キャラ決定
     if (divination < 60) {
-        itemId = item1;
-
-        widthVal;
-        heightVal;
-        xPosition;
-        yPosition;
-        vanishTime;
-    } else if (divination >= 60 && divination < 90) {
-        itemId = item2;
+        itemId = item;
         widthVal = 20;
-        heightVal = 28;
-        xPosition = 10;
+        heightVal = 20;
+        xPosition = 100;
         yPosition = 50;
-        vanishTime = 8000;
+        vanishTime = 8500;
     };
     // } else if (divination >= 91 && divination <= 100) {
     //     itemId = item3;
@@ -73,7 +69,69 @@ var decideItem = (item1, item2, item3) => {
     //     itemId = "walking-panchan-reverse";
     //     xPosition = -30;
     // }
+    // if(itemId === "aranu1"){
+    //     if(divination >= 60 && divination < 64){
+    //         itemId += "_1";
+    //     } else if (divination >= 64 && divination < 68){
+    //         itemId += "_2";
+    //     }else if (divination >= 68 && divination < 70){
+    //         itemId += "_3";
+    //     }
+    // } else if (itemId === "aranu2"){
+    //     if(divination >= 70 && divination < 74){
+    //         itemId += "_1";
+    //     } else if (divination >= 74 && divination < 78){
+    //         itemId += "_2";    
+    //     }else if (divination >= 78 && divination < 80){
+    //         itemId += "_3";            
+    //     }
+    // } else {
+    //     if(divination >= 80 && divination < 84){
+    //         itemId += "_1";
+    //     } else if (divination >= 84 && divination < 88){
+    //         itemId += "_2";    
+    //     }else if (divination >= 88 && divination < 90){
+    //         itemId += "_3";            
+    //     }
+    // }
 
+
+    if((window.innerHeight > 1024) && (itemId === item2)) {
+        widthVal = 40;
+        heightVal = 40;
+    }
+
+    createItem(parentClassName, itemId, widthVal, heightVal, xPosition, yPosition, vanishTime);
+}
+
+var aranuItem = (item) => {
+    var parentClassName = item;
+    var itemId;
+    var widthVal;
+    var heightVal;
+    var xPosition;
+    var yPosition;
+    var vanishTime;
+    var divination = rand(0, 100);
+
+    // 表示キャラ決定
+    if (divination >= 60 && divination < 90) {
+        widthVal = rand(20,100);
+        heightVal = widthVal;
+        xPosition = rand(-30, 80);
+        yPosition = rand(-30, 85);
+
+        if(divination >= 60 && divination < 70){
+            itemId = item1+"1";
+            vanishTime = 15000;
+        } else if (divination >= 70 && divination < 80){
+            itemId = item1+"2";
+            vanishTime = 15000;
+        } else {
+            itemId = item1+"3";
+            vanishTime = 15000;
+        }
+    };
     createItem(parentClassName, itemId, widthVal, heightVal, xPosition, yPosition, vanishTime);
 }
 
@@ -81,9 +139,11 @@ var decideItem = (item1, item2, item3) => {
 const observer = new IntersectionObserver((entries) => {
     for(const e of entries) {
         if(e.isIntersecting) {
-            _topAnimation = setInterval(function () { decideItem(item1, item2, item3); }, itemInterval);
+            _top_panchanAnimation = setInterval(function () { panchanItem(item2); }, panchanInterval);
+            _top_aranuAnimation = setInterval(function () { aranuItem(item1); }, aranuInterval);
         }else{
-            window.clearInterval(_topAnimation);
+            window.clearInterval(_top_panchanAnimation);
+            window.clearInterval(_top_aranuAnimation);
         }
     }
 });
@@ -91,5 +151,6 @@ const observer = new IntersectionObserver((entries) => {
 item1 = 'aranu';
 item2 = 'walking-panchan';
 item3 = '';
-itemInterval = 10000;
+panchanInterval = 8500;
+aranuInterval = 10000;
 observer.observe(target);
