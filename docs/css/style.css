@@ -15,8 +15,8 @@ header {
 
 .header-illust {
     position: relative;
-    margin-left: 5%;
-    margin-bottom: 50%;
+    margin: 0 auto 20% auto;
+    width: 80%;
 }
 
 #icon-panda {

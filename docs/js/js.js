@@ -5,7 +5,8 @@ var item2;
 var item3;
 var panchanInterval;
 var aranuInterval;
-const target = document.getElementById('main');
+const target_main_top = document.getElementById('main');
+const target_main_oretachi = document.getElementById('oretachi');
 
 /**
  * 規定値内でランダムな数値を生成する関数
@@ -27,7 +28,7 @@ const createItem = (parentClassName, itemId, widthVal, heightVal, xPosition, yPo
     if(parentClassName === "aranu"){
         itemEl.style.animationDuration = rand(3, 13) + "s";
     }
-    target.appendChild(itemEl);
+    target_main_top.appendChild(itemEl);
     setTimeout(() => {
         itemEl.style.display = '';
     }, 500);
@@ -135,8 +136,34 @@ var aranuItem = (item) => {
     createItem(parentClassName, itemId, widthVal, heightVal, xPosition, yPosition, vanishTime);
 }
 
+$(window).scroll(function () {
+    var scrollAnimationElm = document.querySelectorAll('.top_oretachi-panchan');
+    var scrollAnimationFunc = function () {
+      for (var i = 0; i < scrollAnimationElm.length; i++) {
+        var triggerMargin = 100;
+        if (window.innerHeight > scrollAnimationElm[i].getBoundingClientRect().top + triggerMargin) {
+          scrollAnimationElm[i].classList.add('on');
+        }
+      }
+    }
+    window.addEventListener('load', scrollAnimationFunc);
+    window.addEventListener('scroll', scrollAnimationFunc);
+  });
+
 // 交差オブザーバー API（セレクタはID推奨　※classやquerySelectorだと認識しない）
-const observer = new IntersectionObserver((entries) => {
+const observer_main_top = new IntersectionObserver((entries) => {
+    for(const e of entries) {
+        if(e.isIntersecting) {
+            _top_panchanAnimation = setInterval(function () { panchanItem(item2); }, panchanInterval);
+            _top_aranuAnimation = setInterval(function () { aranuItem(item1); }, aranuInterval);
+        }else{
+            window.clearInterval(_top_panchanAnimation);
+            window.clearInterval(_top_aranuAnimation);
+        }
+    }
+});
+
+const observer_main_oretachi = new IntersectionObserver((entries) => {
     for(const e of entries) {
         if(e.isIntersecting) {
             _top_panchanAnimation = setInterval(function () { panchanItem(item2); }, panchanInterval);
@@ -153,4 +180,5 @@ item2 = 'walking-panchan';
 item3 = '';
 panchanInterval = 8500;
 aranuInterval = 10000;
-observer.observe(target);
+observer_main_top.observe(target_main_top);
+observer_main_oretachi.observe(target_main_oretachi);
