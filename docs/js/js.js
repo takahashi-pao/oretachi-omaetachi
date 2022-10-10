@@ -1,12 +1,14 @@
 var _top_panchanAnimation;
 var _top_aranuAnimation;
+var _oretachi_panchanAnimation;
+var _oretachi_aranuAnimation;
 var item1;
 var item2;
 var item3;
 var panchanInterval;
 var aranuInterval;
 let target_main_top = document.getElementById('main');
-let target_main_oretachi_box = document.getElementById('oretachi-box').clientHeight;
+const target_main_oretachi_box = document.getElementById('oretachi-box');
 let target_main_oretachi_aranu = document.getElementById('oretachi-aranu');
 let target_main_oretachi_panchan = document.getElementById('oretachi-panchan');
 
@@ -99,7 +101,7 @@ var panchanItem = (item) => {
     // }
 
 
-    if((window.innerHeight > 1024) && (itemId === item2)) {
+    if((window.innerWidth > 1024) && (itemId === item2)) {
         widthVal = 40;
         heightVal = 40;
     }
@@ -139,15 +141,10 @@ var aranuItem = (item) => {
 }
 
 // home-oretachi パンダ表示スクリプト
-window.addEventListener('scroll', function () {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    if (scrollTop <= target_main_oretachi_box) {
-        target_main_oretachi_aranu.style.opacity = 1;
-    } else {
-        target_main_oretachi_aranu.style.opacity = 0;
-    }
-});
-
+if(window.innerWidth > 1024)
+{
+    
+}
 
 // 交差オブザーバー API（セレクタはID推奨　※classやquerySelectorだと認識しない）
 const observer_main_top = new IntersectionObserver((entries) => {
@@ -162,9 +159,75 @@ const observer_main_top = new IntersectionObserver((entries) => {
     }
 });
 
+
+window.addEventListener("load", (event) => {  
+    oretachiObserver();
+  }, false);
+
+// 見えている割合が80%以上になるとクラスが付与され、80%以下になるとクラスが剥奪される
+function oretachiObserver () {
+    var fadeOut_flg = 0;
+    target_main_oretachi_panchan.style.animationDuration = 1.0 + 's';
+    target_main_oretachi_aranu.style.animationDuration = 1.0 + 's';
+
+    const callback = (entries, observer) => {
+        entries.forEach(entry => {
+            if(entry.intersectionRatio > 0.9) {                
+                if(target_main_oretachi_panchan.style.animationName == 'top_oretachi-panchan ON') {
+                    return;
+                }
+                target_main_oretachi_panchan.classList.add('ON');
+                target_main_oretachi_panchan.style.animationName = 'oretachi-side-fadeIn-panchan';
+
+                target_main_oretachi_aranu.classList.add('ON');
+                target_main_oretachi_aranu.style.animationName = 'oretachi-side-fadeIn-aranu';
+                console.log('on');
+                fadeOut_flg = 0;
+            } else {
+                if(fadeOut_flg == 1) return;
+                target_main_oretachi_panchan.classList.remove('ON');                
+                target_main_oretachi_panchan.style.animationName = 'oretachi-side-fadeOut-panchan';
+
+                target_main_oretachi_aranu.classList.remove('ON');
+                target_main_oretachi_aranu.style.animationName = 'oretachi-side-fadeOut-aranu';
+                console.log('off');
+                fadeOut_flg = 1;
+            }
+
+            // target_main_oretachi_panchan.style.opacity = entry.intersectionRatio;
+            // target_main_oretachi_aranu.style.opacity = entry.intersectionRatio;
+            
+        });
+    };
+
+    const option = {
+        threshold: buildThresholdList()
+    }
+
+    const observer = new IntersectionObserver(
+        callback, option
+    )
+    
+    observer.observe(target_main_oretachi_box);
+}
+
+function buildThresholdList() {
+    let thresholds = [];
+    let numSteps = 5;
+  
+    for (let i=1.0; i<=numSteps; i++) {
+      let ratio = i/numSteps;
+      thresholds.push(ratio);
+    }
+  
+    thresholds.push(0);
+    return thresholds;
+  }
+
 item1 = 'aranu';
 item2 = 'walking-panchan';
 item3 = '';
 panchanInterval = 8500;
 aranuInterval = 10000;
 observer_main_top.observe(target_main_top);
+

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MEMBER</title>
+        <link href="https://takahashi-pao.github.io/oretachi-omaetachi/css/style.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <body>
+        <header>
+            <div class="nav_master_member">
+                <nav class="global_nav_sub">
+                    <h1 class="header-illust">
+                        <a href="https://takahashi-pao.github.io/oretachi-omaetachi/index.html">
+                            <img id="icon-panda" src="https://takahashi-pao.github.io/oretachi-omaetachi/img/panda2.png">
+                        </a>                        
+                    </h1>  
+                    <h2 class="home_nav">HOME</h2>                  
+                </nav>
+            </div>            
+            <div class="btn_humberger"></div>
+        </header>
+
+        <main>
+            <section class="member_aranu">
+                <div class="member_aranu_frame">
+                    <div class="member_main_aranu">
+                        <div class="member_visual_aranu"></div>
+                        <div class="member_aranu_textContent">
+                            <div class="member_aranu_title">
+                                <h1>aranu</h1>
+                            </div>
+                            <div class="member_aranu_text">
+                                <p class="first">
+                                    彼(?)の名前はあらぬ。
+                                </p>
+                                <p class="second">
+                                    我々は彼がどこから来て、どこへ向かうのかを知ることはできない。
+                                </p>
+                                <p class="third">
+                                    一節によると重力に干渉し、3次元に姿を東映しているに過ぎないとか。
+                                </p>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>                
+            </section>    
+            <section class="member_panchan">
+                <div class="member_panchan_frame">
+                    <div class="member_main_panchan">
+                        <div class="member_visual_panchan"></div>
+                        <div class="member_panchan_textContent">
+                            <div class="member_panchan_title">
+                                <h1>panchan</h1>
+                            </div>
+                            <div class="member_panchan_text">
+                                <p class="first">
+                                    知ってると思うけど、僕パンちゃん。
+                                </p>
+                                <p class="second">
+                                    みんなパンちゃんのことが大好きだから引っ張りだこで困っちゃう。
+                                </p>
+                                <p class="third">
+                                    パンちゃんかわいいから仕方ないよね～。
+                                </p>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </section>        
+        </main>
+
+        <footer>
+            <div class="footer_logo">
+
+            </div>
+            <div class="footer_likeCopyrights">
+                Oretachi-Omaetachi
+            </div>
+        </footer>
+
+        <script>
+            var home_button = document.querySelector('global_nav_sub');
+            var aranu_frame = document.querySelector('.member_visual_aranu');
+            var panchan_frame = document.querySelector('.member_visual_panchan');
+
+            // home_button.addEventListener('mouseover', function(){
+            //     home_button:after.style
+            // })
+
+            function rand(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            const move_frame = (selector) => {
+                var period = null;
+            
+                var middle = [];
+
+
+                for(let i = 0; i < 4; i++){
+                    var test = null;
+                    test = rand(30, 90) + '% ';
+                    for(let n = 0; n < 7; n++){
+                        var per = rand(30, 90);
+                        var perStr = per + '% ';
+                        test += perStr;
+
+                        if(n == 2) test += '/';
+                    }
+                    
+
+                    if(i == 0) {
+                        period = test;                                 
+                    } else {
+                        middle[i-1] = test;
+                    }
+                }
+            
+                const move = selector.animate([
+                    {
+                        borderRadius: period
+                    },
+                    {
+                        borderRadius: middle[0]
+                    },
+                    {
+                        borderRadius: middle[1]
+                    },
+                    {
+                        borderRadius: middle[2]
+                    },
+                    {
+                        borderRadius: period
+                    }          
+                    ],
+                    {
+                        duration: 10000,
+                        iterations: Infinity,
+                    }
+                );
+
+                move.play();
+            }
+
+            move_frame(aranu_frame);
+            move_frame(panchan_frame);        
+        </script>
+    </body>
+</html>
