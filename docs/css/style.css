@@ -633,7 +633,7 @@ body {
 }
 .member_aranu_text {
     position: relative;
-
+    display: none;
 }
 .member_aranu_text > .first {
     position: relative;
