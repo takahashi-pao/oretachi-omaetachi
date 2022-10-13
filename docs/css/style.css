@@ -24,8 +24,9 @@ header {
 
 .header-illust {
     position: relative;
-    margin: 0 auto 20% auto;
-    width: 80%;
+    margin: 0% auto 0% auto;
+    width: 130%;
+    left: 25%;
 }
 .home_nav {
     content: 'HOME';
