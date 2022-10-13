@@ -54,8 +54,8 @@ var panchanItem = (item) => {
     // 表示キャラ決定
     if (divination < 60) {
         itemId = item;
-        widthVal = 20;
-        heightVal = 20;
+        widthVal = 50;
+        heightVal = 50;
         xPosition = 100;
         yPosition = 50;
         vanishTime = 8500;
