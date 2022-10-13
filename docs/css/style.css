@@ -379,6 +379,8 @@ section {
     height: 45%;
     top: 5%;
     position: relative;
+    border-radius: 64% 100% 74% 93% / 74% 53% 84% 55%;
+    background-color: #90C1BF;
 }
 .oretachi-doya > .top_oretachi-panchan, .oretachi-doya > .top_oretachi-aranu {
     backface-visibility: hidden;
