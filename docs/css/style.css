@@ -70,10 +70,10 @@ nav ul {
 }
 
 .main_nav li, .main_nav_sub li {
-    line-height: 1.35;
+    line-height: 1;
     margin-bottom: 20px;
     position: relative;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .main_nav > li > a, .main_nav_sub > li > a {
