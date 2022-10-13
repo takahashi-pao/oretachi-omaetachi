@@ -58,11 +58,11 @@ nav ul {
     display: block;
     position: fixed;
     z-index: 5;
-    width: 30%;
+    width: 15%;
     margin-left: 5%;
     margin-top: 5%;
-    top: 85%;
-    left: 67%;
+    top: 87%;
+    left: 70%;
 }
 
 .main_nav, .main_nav_sub {
@@ -376,7 +376,8 @@ section {
 }
 .oretachi-doya {
     width: 100%;
-    height: 100%;
+    height: 45%;
+    top: 5%;
     position: relative;
 }
 .oretachi-doya > .top_oretachi-panchan, .oretachi-doya > .top_oretachi-aranu {
@@ -395,6 +396,7 @@ section {
     z-index: 100;    
     animation-fill-mode: forwards;
     opacity: 0;
+    left: -10%;
 }
 
 
@@ -421,9 +423,10 @@ section {
 .top_oretachi-aranu {
     background-image: url(https://takahashi-pao.github.io/oretachi-omaetachi/img/Ara\ nu.png);
     position: absolute;
-    width: 100%;
+    width: 90%;
     height: 100%;
-    translate: rotateX(20deg);
+    left: 25%;
+    transform: rotate(15deg);
     animation-fill-mode: forwards;
     opacity: 0;
 }
@@ -450,19 +453,25 @@ section {
 
 .oretachi_textContent {
     position: relative;
-    top: 10%;
 }
 .oretachi_title {
     /* font-family: 'chillOut'; */
     position: relative;
     text-align: center;
-    font-size: 5em;
+    font-size: 3em;
 }
 .oretachi_text {
     text-align: center;
+    font-size: 0.8em;
+    line-height: 3;
+    top: 5%;
+    margin-bottom: 0;
 }
 .oretachi_more {
-    text-align: center;    
+    text-align: center;
+    font-size: 1em;
+    text-decoration: none;  
+    margin: 0;
 }
 .oretachi_more > a {
     text-decoration: none;
@@ -481,14 +490,14 @@ section {
 footer {
     background: #baad9e;
     width: 100%;
-    height: 5vh;
+    height: 2vh;
     position: relative;
 }
 .footer_likeCopyrights {
     text-align: center;
-    top: 30%;
+    top: 10%;
     position: relative;
-    font-size: 2em;
+    font-size: 0.3em;
 }
 /* 
 body {
@@ -598,13 +607,13 @@ body {
     width: 120%;
     height: 50%;
     left: -25%;
-    top: 15%;
+    top: 23%;
     border-radius: 69% 91% 62% 83% / 65% 65% 75% 64%;
     rotate: 5deg;
     margin: 0 auto;
 }
 .member_aranu_textContent {
-    top: 55%;
+    top: 60%;
     left: 40%;
     position: absolute;
 }
@@ -614,8 +623,11 @@ body {
 }
 .member_aranu_title > h1 {
     text-align: center;
-    font-size: 12em;
+    font-size: 6em;
+    left: -18%;
     margin: 0;
+    position: relative;
+    transform: rotate(5deg);
 }
 .member_aranu_text {
     position: relative;
@@ -638,7 +650,7 @@ body {
     background: #f1e4cc;
     overflow: hidden;
     width: 100%;
-    height: 95vh;
+    height: 98vh;
 }
 .member_panchan_frame {
     height: 95vh;
@@ -662,8 +674,8 @@ body {
     position: absolute;
     width: 140%;
     height: 50%;
-    left: 25%;
-    top: 15%;
+    left: 15%;
+    top: 10%;
     border-radius: 69% 91% 62% 83% / 65% 65% 75% 64%;
     margin: 0 auto;
 }
@@ -678,7 +690,7 @@ body {
     left: 10%;    
 }
 .member_panchan_title > h1 {
-    font-size: 8em;
+    font-size: 4em;
     position: relative;
     margin: 0;
 }
@@ -686,15 +698,17 @@ body {
     position: relative;
     top: 62%;
     left: 13%;
+    font-size: 0.8em;
+    width: 90%;
 }
 
 
 .contact_box {
-    height: 95vh;
+    height: 98vh;
     background-color: #F2EDE4;
 }
 
 .gallary {
-    height: 95vh;
+    height: 98vh;
     background-color: #F2EDE4;
 }
